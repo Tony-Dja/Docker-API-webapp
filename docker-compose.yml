@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  frontend:
+    image: php:apache
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    volumes:
+      - ./website:/var/www/html
+    environment:
+      - USERNAME=toto
+      - PASSWORD=python
+  api:
+    image: api-service
+    volumes:
+      - ./simple_api/student_age.json:/data/student_age.json
+    ports:
+      - "5000:5000"
