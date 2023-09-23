@@ -1,5 +1,7 @@
 
+<div align="center">
 Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flask)
+</div>
 
 ![project](https://user-images.githubusercontent.com/18481009/84582395-ba230b00-adeb-11ea-9453-22ed1be7e268.jpg)
 
@@ -35,14 +37,14 @@ http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 # Builder l'image
 
-Dockerfile pour conteneuriser l'API
+Le fichier Dockerfile /simple_api/Dockerfile pour conteneuriser l'API
 
-Image Base => python:2.7-buster
-Copie du code source => COPY . /
-Création d'un volume afin de monter les données JSON => VOLUME /data 
+Image Base => python:2.7-buster <br/>
+Copie du code source => COPY . /<br/>
+Création d'un volume afin de monter les données JSON => VOLUME /data <br/>
 Exposition du conteneur => port 5000
 
-Builder
+- Builder
 => Docker build -t api-service .
 
 
@@ -50,13 +52,17 @@ Builder
 
 Les données sont chargées au lancement en spécifiant un volume BindMount -v
 
+- Lancement
+
 => docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
 
-Tester le conteneur
+- Tester le conteneur
 
 => curl -u toto:python -X GET http://<host IP>:<API exposed port>/pozos/api/v1.0/get_student_ages
 
 exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages
+
+- Supprimer
 
 Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
 
