@@ -1,5 +1,5 @@
-# student-list 
-This repo is a simple application to list student with a webserver (PHP) and API (Flask)
+
+Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flask)
 
 ![project](https://user-images.githubusercontent.com/18481009/84582395-ba230b00-adeb-11ea-9453-22ed1be7e268.jpg)
 
@@ -7,73 +7,60 @@ This repo is a simple application to list student with a webserver (PHP) and API
 ------------
 
 
-## Objectives
+# Application
 
-The objectives of this practice exam are to ensure that you are able to manage a docker infrastructure, so you will be evaluated about the following
+L'application permet d'afficher sur une page web, une liste d'étudiants avec leur nom et age.
+Les données sont stockées dans un fichier JSON. Vous pouvez les modifier.
+Une API permet de renvoyer les données JSON au frontend.
 
-### Themes:
+Elle est composée de 2 modules :
 
-- improve an existed application deployment process
-- versioning your infrastructure release
-- address best practice when implementing docker infrastructure
-- Infrastructure As Code
+1. API REST => renvoi une liste d'étudiants à partir d'un fichier JSON (authentification requise)
+2. Web APP => une page PHP permettant d'afficher la liste des étudiants
 
-## Context
+Chaque module est conteneurisé puis déployé en local avec le docker-compose.yml
 
-
-*POZOS*  is an IT company located in France and develops software for High School.
-
-The innovation department want to disrupt the existing infrastructure to ensure that
-
-it can be scalable, easily deployed with a maximum of automation.
-
-POZOS wants you to build a **POC** to show how docker can help you and how much this technology is efficient.
-
-For this POC, POZOS will give you an application and want you to build a "decouple" infrastructure based on **Docker**.
-
-Currently, the application is running on a single server with any scalability and any high availability.
-
-When POZOS needs to deploy a new release, every time some goes wrong.
-
-In conclusion, POZOS needs agility on its software farm.
-
-## Infrastructure
-
-For this POC, you will only use one single machine with a docker installed on it.
-
-The build and the deployment will be made on this machine.
-
-POZOS recommends you to use centos7.6 OS because it's the most used in the company.
-
-Please also note that you are authorized to use a virtual machine base on Centos7.6 and not your physical machine.
-
-The security is a very critical aspect of POZOS DSI so please do not disable the firewall or other security mechanisms otherwise please explain your reasons in your delivery.
-
-## Application
+Le frontend est accessible via cette URL :
+http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 
-The application that you will be working on is named "*student_list*", this application is very basic and enables POZOS to show the list of the student with their age.
+# Fichiers
 
-student_list has two modules:
+- docker-compose.yml: déploiement de l'application (API et web app)
+- Dockerfile: Conteneurisation l'API Rest
+- student_age.json: contient la liste des étudiants avec leur nom et age au format JSON
+- student_age.py: code source python de l'API
+- index.php: Page affichant le frontend et envoie la requête au backend
 
-- the first module is a REST API (with basic authentication needed) who send the desire list of the student based on JSON file
-- The second module is a web app written in HTML + PHP who enable end-user to get a list of students
 
-Your work is to build one container for each module an make them interact with each other
+# Builder l'image
 
-Application source code can be found [here](https://github.com/diranetafen/student-list.git "here")
+Dockerfile pour conteneuriser l'API
 
-The files that you must provide (in your delivery) are ***Dockerfile*** and ***docker-compose.yml***  (currently both are empty)
+Image Base => python:2.7-buster
+Copie du code source => COPY . /
+Création d'un volume afin de monter les données JSON => VOLUME /data 
+Exposition du conteneur => port 5000
 
-Now it is time to explain you each file's role:
+Builder
+=> Docker build -t api-service .
 
-- docker-compose.yml: to launch the application (API and web app)
-- Dockerfile: the file that will be used to build the API image (details will be given)
-- student_age.json: contain student name with age on JSON format
-- student_age.py: contains the source code of the API in python
-- index.php: PHP  page where end-user will be connected to interact with the service to - list students with age. You need to update the following line before running the website container to make ***api_ip_or_name*** and ***port*** fit your deployment
-   ` $url = 'http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages';`
 
+# Lancer le conteneur
+
+Les données sont chargées au lancement en spécifiant un volume BindMount -v
+
+=> docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
+
+Tester le conteneur
+
+=> curl -u toto:python -X GET http://<host IP>:<API exposed port>/pozos/api/v1.0/get_student_ages
+
+exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages
+
+Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
+
+=> docker container rm container-api-service
 
 
 ## Build and test (7 points)
