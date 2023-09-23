@@ -25,7 +25,7 @@ Elle est composée de 2 modules :
 
 Chaque module est conteneurisé puis déployé en local avec le docker-compose.yml
 
-Le frontend est accessible via cette URL :
+L'API est accessible via cette URL :
 http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 
@@ -111,6 +111,11 @@ http://localhost:5000/pozos/api/v1.0/get_student_ages
 
 Pour accéder à l'application (frontend) :<br/>
 http://localhost
+
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/929ee6c621a724e0a673456cd359702c65d411f7/screenshots/frontend.png)
+
+
 
 
 - Base image
