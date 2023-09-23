@@ -84,9 +84,34 @@ Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en uti
 => docker container rm container-api-service
 
 
-## Build and test (7 points)
+## Déploiement
 
-POZOS will give you information to build the API container
+Pour déployer le frontend et l'API en backend nous allons exécuter le fichier docker-compose.yml
+
+Il contient 2 services :
+
+=> frontend<br/>
+=> api
+
+Le service frontend dépend du service api. Il ne peut pas démarrer si l'API n'est pas encore active.
+Il est exposé sur le port 80.
+
+=> depends_on:<br/>
+      - api
+
+- Lancement
+
+=> docker compose up
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/ec950f89772dab7f02253184a910a7dd3127a693/screenshots/docker-compose-up.png)
+
+
+Vérifiez que l'API est bien accessible via cette URL :<br/>
+http://localhost:5000/pozos/api/v1.0/get_student_ages
+
+Pour accéder à l'application (frontend) :<br/>
+http://localhost
+
 
 - Base image
 
