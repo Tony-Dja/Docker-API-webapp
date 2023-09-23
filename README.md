@@ -1,10 +1,16 @@
 
 <div align="center">
+
+![Docker Build](https://img.shields.io/badge/docker-build-green)       ![Docker Build](https://img.shields.io/badge/dockercompose-up-green)        ![Python](http://ForTheBadge.com/images/badges/made-with-python.svg) 
+
+![Static Badge](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)        ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)        ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)      
+
+</div>
+<div align="center">
 Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flask)
 
 ![project](https://user-images.githubusercontent.com/18481009/84582395-ba230b00-adeb-11ea-9453-22ed1be7e268.jpg)
 </div>
-------------
 
 # Application
 
