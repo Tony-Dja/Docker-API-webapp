@@ -1,13 +1,10 @@
 
 <div align="center">
 Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flask)
-</div>
 
 ![project](https://user-images.githubusercontent.com/18481009/84582395-ba230b00-adeb-11ea-9453-22ed1be7e268.jpg)
-
-
+</div>
 ------------
-
 
 # Application
 
