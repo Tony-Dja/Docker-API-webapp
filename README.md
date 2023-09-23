@@ -18,7 +18,7 @@ L'application permet d'afficher sur une page web, une liste d'étudiants avec le
 Les données sont stockées dans un fichier JSON.
 Une API permet de renvoyer les données JSON au frontend.
 
-Elle est composée de 2 modules :
+<strong>Elle est composée de 2 modules :</strong>
 
 1. API REST => renvoi une liste d'étudiants à partir d'un fichier JSON (authentification requise)
 2. Web APP => une page PHP permettant d'afficher la liste des étudiants
@@ -47,12 +47,12 @@ Copie du code source => COPY . /<br/>
 Création d'un volume afin de monter les données JSON => VOLUME /data <br/>
 Exposition du conteneur => port 5000
 
-- Builder
+<strong>- Builder</strong>
 => Docker build -t api-service .
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/build-api-service.png)
 
-- Vérifier les images
+<strong>- Vérifier les images</strong>
 => docker images
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-images.png)
@@ -62,13 +62,13 @@ Exposition du conteneur => port 5000
 
 Les données JSON sont chargées au lancement en spécifiant un volume BindMount -v pointant sur le fichier "student_age.json"
 
-- Lancement
+<strong>- Lancement</strong>
 
 => docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-run.png)
 
-- Tester le conteneur
+<strong>- Tester le conteneur</strong>
 
 => curl -u toto:python -X GET http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
@@ -76,7 +76,7 @@ exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_st
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/curl-api.png)
 
-- Supprimer le conteneur
+<strong>- Supprimer le conteneur</strong>
 
 Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
 
@@ -88,7 +88,7 @@ Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en uti
 
 Pour déployer le frontend et l'API en backend nous allons exécuter le fichier docker-compose.yml
 
-Il contient 2 services :
+<strong>Il contient 2 services :</strong>
 
 => frontend<br/>
 => api
@@ -99,7 +99,7 @@ Il est exposé sur le port 80.
 => depends_on:<br/>
       - api
 
-- Lancement
+<strong>- Lancement de l'application</strong>
 
 => docker compose up
 
