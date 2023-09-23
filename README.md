@@ -31,8 +31,8 @@ http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 # Fichiers
 
-- docker-compose.yml: déploiement de l'application (API et web app)
-- Dockerfile: Conteneurisation l'API Rest
+- docker-compose.yml: déploiement de l'application (API et frontend)
+- Dockerfile: Conteneurisation de l'API Rest
 - student_age.json: contient la liste des étudiants avec leur nom et age au format JSON
 - student_age.py: code source python de l'API
 - index.php: Page affichant le frontend et envoie la requête au backend
@@ -93,7 +93,7 @@ Pour déployer le frontend et l'API en backend nous allons exécuter le fichier 
 => frontend<br/>
 => api
 
-Le service frontend dépend du service api. Il ne peut pas démarrer si l'API n'est pas encore active.
+Le service frontend dépend du service api. Il ne peut pas démarrer si l'API n'est pas encore active.<br/>
 Il est exposé sur le port 80.
 
 => depends_on:<br/>
