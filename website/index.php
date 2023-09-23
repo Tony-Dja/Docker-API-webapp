@@ -1,11 +1,12 @@
 
 <html>
     <head>
-        <title>POZOS</title>
+        <title>DOCKER API WEB APP</title>
     </head>
 
     <body>
-        <h1>Student Checking App</h1>
+        <h1>DOCKER API WEB-APP</h1>
+        <h2>Student Checking App</h2>
         <ul>
             <form action="" method="POST">
             <!--<label>Enter student name:</label><br />
@@ -26,7 +27,7 @@
                 "header" => "Authorization: Basic " . base64_encode("$username:$password"),
               )));
 
-              $url = 'http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages';
+              $url = 'http://api:5000/pozos/api/v1.0/get_student_ages';
               $list = json_decode(file_get_contents($url, false, $context), true);
               echo "<p style='color:red;; font-size: 20px;'>This is the list of the student with age</p>";
               foreach($list["student_ages"] as $key => $value) {
