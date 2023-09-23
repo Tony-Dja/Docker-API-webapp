@@ -7,7 +7,7 @@
 
 </div>
 <div align="center">
-Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flask)
+Conteneurisation d'une webApp composée d'un serveur web (PHP) et d'une API (Flask)
 
 ![project](https://user-images.githubusercontent.com/18481009/84582395-ba230b00-adeb-11ea-9453-22ed1be7e268.jpg)
 </div>
@@ -15,7 +15,7 @@ Conteneurisation d'une webApp composé d'un serveur web (PHP) et d'une API (Flas
 # Application
 
 L'application permet d'afficher sur une page web, une liste d'étudiants avec leur nom et age.
-Les données sont stockées dans un fichier JSON. Vous pouvez les modifier.
+Les données sont stockées dans un fichier JSON.
 Une API permet de renvoyer les données JSON au frontend.
 
 Elle est composée de 2 modules :
@@ -40,7 +40,7 @@ http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 # Builder l'image
 
-Le fichier Dockerfile /simple_api/Dockerfile pour conteneuriser l'API
+Exécutez le fichier Dockerfile /simple_api/Dockerfile pour conteneuriser l'API
 
 Image Base => python:2.7-buster <br/>
 Copie du code source => COPY . /<br/>
@@ -50,25 +50,37 @@ Exposition du conteneur => port 5000
 - Builder
 => Docker build -t api-service .
 
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/build-api-service.png)
+
+- Vérifier les images
+=> docker images
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-images.png)
+
 
 # Lancer le conteneur
 
-Les données sont chargées au lancement en spécifiant un volume BindMount -v
+Les données JSON sont chargées au lancement en spécifiant un volume BindMount -v pointant sur le fichier "student_age.json"
 
 - Lancement
 
 => docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
 
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-run.png)
+
 - Tester le conteneur
 
-=> curl -u toto:python -X GET http://<host IP>:<API exposed port>/pozos/api/v1.0/get_student_ages
+=> curl -u toto:python -X GET http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 
 exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages
 
-- Supprimer
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/curl-api.png)
+
+- Supprimer le conteneur
 
 Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
 
+=> docker container stop container-api-service <br/>
 => docker container rm container-api-service
 
 
