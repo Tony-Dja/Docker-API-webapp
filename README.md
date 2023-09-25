@@ -138,7 +138,7 @@ Afin d'enrichir notre application, nous allons mettre en place notre propre regi
 Pour cela nous ajouterons une interface graphique "UI" afin de visualiser confortablement notre bibliothèque sur un navigateur Web.
 
 Nous utiliserons ce projet que nous allons intégrer à notre fichier docker-compose.yml <br/>
-https://hub.docker.com/r/joxit/docker-registry-ui/
+`https://hub.docker.com/r/joxit/docker-registry-ui/`
 
 <strong>Il contient 2 services :</strong>
 
