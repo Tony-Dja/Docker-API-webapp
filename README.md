@@ -47,12 +47,14 @@ Copie du code source => COPY . /<br/>
 Création d'un volume afin de monter les données JSON => VOLUME /data <br/>
 Exposition du conteneur => port 5000
 
+
 <strong>- Builder</strong>
 ```
 Docker build -t api-service .
 ```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/build-api-service.png)
+
 
 <strong>- Vérifier les images</strong>
 ```
@@ -66,15 +68,19 @@ docker images
 
 Les données JSON sont chargées au lancement en spécifiant un volume BindMount -v pointant sur le fichier "student_age.json"
 
-<strong>- Lancement</strong>
 
-=> docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
+<strong>- Lancement</strong>
+```
+docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formation/ci-cd/Docker-API-webapp/simple_api/student_age.json:/data/student_age.json api-service
+```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-run.png)
 
-<strong>- Tester le conteneur</strong>
 
-=> curl -u toto:python -X GET http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
+<strong>- Tester le conteneur</strong>
+```
+curl -u toto:python -X GET http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
+```
 
 exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages
 
@@ -83,10 +89,10 @@ exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_st
 <strong>- Supprimer le conteneur</strong>
 
 Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
-
-=> docker container stop container-api-service <br/>
-=> docker container rm container-api-service
-
+```
+docker container stop container-api-service <br/>
+docker container rm container-api-service
+```
 
 ## Déploiement
 
@@ -104,8 +110,9 @@ Il est exposé sur le port 80.
       - api
 
 <strong>- Lancement de l'application</strong>
-
-=> docker compose up
+```
+docker compose up
+```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/ec950f89772dab7f02253184a910a7dd3127a693/screenshots/docker-compose-up.png)
 
