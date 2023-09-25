@@ -119,6 +119,7 @@ Nous pouvons utiliser le nom du conteneur Docker embarquant l'API, car en ayant 
 
 
 <strong>- Lancement de l'application</strong>
+
 ```
 docker compose up
 ```
