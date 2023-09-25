@@ -117,7 +117,7 @@ Nous pouvons utiliser le nom du conteneur Docker embarquant l'API, car en ayant 
 
 `$url = 'http://api:5000/pozos/api/v1.0/get_student_ages`
 
-<br/>
+
 <strong>- Lancement de l'application</strong>
 ```
 docker compose up
