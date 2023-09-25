@@ -48,12 +48,16 @@ Création d'un volume afin de monter les données JSON => VOLUME /data <br/>
 Exposition du conteneur => port 5000
 
 <strong>- Builder</strong>
-=> Docker build -t api-service .
+```
+Docker build -t api-service .
+```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/build-api-service.png)
 
 <strong>- Vérifier les images</strong>
-=> docker images
+```
+docker images
+```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/docker-images.png)
 
