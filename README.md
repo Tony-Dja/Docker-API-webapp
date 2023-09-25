@@ -90,7 +90,7 @@ exemple : `curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_s
 
 Ensuite supprimer le conteneur pour pouvoir le déployer avec le frontend en utilisant le docker-compose.yml
 ```
-docker container stop container-api-service <br/>
+docker container stop container-api-service
 docker container rm container-api-service
 ```
 
