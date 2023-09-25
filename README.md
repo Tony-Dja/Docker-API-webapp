@@ -179,4 +179,30 @@ docker ps
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/cd517afb6c721b98327431371ea3e25380db63e2/screenshots/docker-ps.png)
 
 
-![good luck](https://user-images.githubusercontent.com/18481009/84582398-cad38100-adeb-11ea-95e3-2a9d4c0d5437.gif)
+<strong>- Pusher nos images Docker sur notre Registry privé</strong>
+
+L'interface graphique de notre Registry est accessible à cette adresse :<br/>
+`http://localhost:3000`
+
+
+Pour Pusher une image, il faut tout d'abord Taguer l'image avec la balise de notre Registry.<br/>
+Le service registry-server est exposé sur le port 9000 de notre machine Hôte. Il pointe ensuite sur le port 5000 du container Docker.<br/>
+
+```
+docker tag api-service:latest localhost:9000/api-service:latest
+```
+
+Ensuite nous utilisons la commande PUSH
+
+```
+docker push localhost:9000/api-service:latest
+```
+
+=> http://localhost:3000
+
+
+![screen](https://user-images.githubusercontent.com/18481009/84582398-cad38100-adeb-11ea-95e3-2a9d4c0d5437.gif)
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/registry-ui.png)
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/enjoy.jpg)
