@@ -140,6 +140,7 @@ Pour cela nous ajouterons une interface graphique "UI" afin de visualiser confor
 Nous utiliserons ce projet que nous allons intégrer à notre fichier docker-compose.yml <br/>
 `https://hub.docker.com/r/joxit/docker-registry-ui/`
 
+
 <strong>Il contient 2 services :</strong>
 
 => registry-server<br/>
@@ -156,6 +157,7 @@ Le service registry-ui dépend du service registry-server. l'UI ne peut pas dém
 => depends_on:<br/>
       - registry-server
 
+
 <strong>- Lancement de l'application avec le registre privé</strong>
 
 En premier lieu nous allons supprimer l'environnement précédent et relancer le docker compose
@@ -168,6 +170,7 @@ docker compose up
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/8700e004ea60f6b27a8f257c0aee7e68a78a89b8/screenshots/registry.png)
 
 
+
 <strong>- Checker les containers</strong>
 
 Nous vérifions que nos 4 containers soient bien lancés avec un status "UP"
@@ -177,6 +180,7 @@ docker ps
 ```
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/cd517afb6c721b98327431371ea3e25380db63e2/screenshots/docker-ps.png)
+
 
 
 <strong>- Pusher nos images Docker sur notre Registry privé</strong>
@@ -201,8 +205,8 @@ docker push localhost:9000/api-service:latest
 => http://localhost:3000
 
 
-![screen](https://user-images.githubusercontent.com/18481009/84582398-cad38100-adeb-11ea-95e3-2a9d4c0d5437.gif)
-
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/registry-ui.png)
 
+<div align="center">
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/enjoy.jpg)
+</div>
