@@ -130,14 +130,14 @@ Pour accéder à l'application (frontend) :<br/>
 
 ## Création d'un Registre privé
 
-Afin d'enrichir notre application, nous allons mettre en place un registre privé afin de stocker nos images en interne sans passer par une solution externe comme DockerHub.
+Afin d'enrichir notre application, nous allons mettre en place notre propre registre privé afin de stocker nos images en interne sans passer par une solution externe comme DockerHub.
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/a0ffd563d63d6bee7210d6bdb3118256fbcf4577/screenshots/docker-private-registry.png)
 
 
-Pour cela nous allons ajouter une interface graphique "UI" afin de visualiser confortablement notre bibliothèque sur un navigateur Web.
+Pour cela nous ajouterons une interface graphique "UI" afin de visualiser confortablement notre bibliothèque sur un navigateur Web.
 
-Nous utiliserons ce projet que nous allons intégrer à notre fichier docker-compose.yml
+Nous utiliserons ce projet que nous allons intégrer à notre fichier docker-compose.yml <br/>
 https://hub.docker.com/r/joxit/docker-registry-ui/
 
 <strong>Il contient 2 services :</strong>
@@ -148,7 +148,7 @@ https://hub.docker.com/r/joxit/docker-registry-ui/
 Par défaut, ils sont exposés sur le port 5000 pour le serveur et 80 par la partie UI.
 Notre application utilisant déjà ces ports sur la machine Hôte, nous allons les rediriger afin de ne pas créer de conflits.
 
-=> registry-server => ports 9000:5000
+=> registry-server => ports 9000:5000<br/>
 => registry-ui => ports 3000:80
 
 Le service registry-ui dépend du service registry-server. l'UI ne peut pas démarrer si le serveur n'est pas encore actif.<br/>
@@ -168,6 +168,15 @@ docker compose up
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/8700e004ea60f6b27a8f257c0aee7e68a78a89b8/screenshots/registry.png)
 
 
+<strong>- Checker les containers</strong>
+
+Nous vérifions que nos 4 containers soient bien lancés avec un status "UP"
+
+```
+docker ps
+```
+
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/cd517afb6c721b98327431371ea3e25380db63e2/screenshots/docker-ps.png)
 
 
 ![good luck](https://user-images.githubusercontent.com/18481009/84582398-cad38100-adeb-11ea-95e3-2a9d4c0d5437.gif)
