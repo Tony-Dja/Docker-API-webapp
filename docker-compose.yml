@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   frontend:
+    container_name: frontend
     image: php:apache
     depends_on:
       - api
@@ -8,12 +9,19 @@ services:
       - "80:80"
     volumes:
       - ./website:/var/www/html
+    networks:
+      - student_network
     environment:
       - USERNAME=toto
       - PASSWORD=python
   api:
+    container_name: api
     image: api-service
     volumes:
       - ./simple_api/student_age.json:/data/student_age.json
     ports:
       - "5000:5000"
+    networks:
+      - student_network
+networks:
+  student_network:
