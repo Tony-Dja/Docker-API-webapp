@@ -118,112 +118,56 @@ docker compose up
 
 
 Vérifiez que l'API est bien accessible via cette URL :<br/>
-http://localhost:5000/pozos/api/v1.0/get_student_ages
+`http://localhost:5000/pozos/api/v1.0/get_student_ages`
 
 Pour accéder à l'application (frontend) :<br/>
-http://localhost
+`http://localhost`
 
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/929ee6c621a724e0a673456cd359702c65d411f7/screenshots/frontend.png)
 
 
 
+## Création d'un Registre privé
 
-- Base image
+Afin d'enrichir notre application, nous allons mettre en place un registre privé afin de stocker nos images en interne sans passer par une solution externe comme DockerHub.
 
-To build API image you must use "python:2.7-buster"
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/a0ffd563d63d6bee7210d6bdb3118256fbcf4577/screenshots/docker-private-registry.png)
 
-- Maintainer
 
-Please don't forget to specify the maintainer information
+Pour cela nous allons ajouter une interface graphique "UI" afin de visualiser confortablement notre bibliothèque sur un navigateur Web.
 
-- Add the source code
+Nous utiliserons ce projet que nous allons intégrer à notre fichier docker-compose.yml
+https://hub.docker.com/r/joxit/docker-registry-ui/
 
-You need to copy the source code of the API in the container at the root "/" path
+<strong>Il contient 2 services :</strong>
 
-- Prerequisite
+=> registry-server<br/>
+=> registry-ui
 
-The API is using FLASK engine,  here is a list of the package you need to install
+Par défaut, ils sont exposés sur le port 5000 pour le serveur et 80 par la partie UI.
+Notre application utilisant déjà ces ports sur la machine Hôte, nous allons les rediriger afin de ne pas créer de conflits.
+
+=> registry-server => ports 9000:5000
+=> registry-ui => ports 3000:80
+
+Le service registry-ui dépend du service registry-server. l'UI ne peut pas démarrer si le serveur n'est pas encore actif.<br/>
+
+=> depends_on:<br/>
+      - registry-server
+
+<strong>- Lancement de l'application avec le registre privé</strong>
+
+En premier lieu nous allons supprimer l'environnement précédent et relancer le docker compose
+
 ```
-apt update -y && apt install python-dev python3-dev libsasl2-dev python-dev libldap2-dev libssl-dev -y
-pip install flask==1.1.2 flask_httpauth==4.1.0 flask_simpleldap python-dotenv==0.14.0
+docker compose down
+docker compose up
 ```
-- Persistent data (volume)
 
-Create data folder at the root "/" where data will be stored and declare it as a volume
+![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/8700e004ea60f6b27a8f257c0aee7e68a78a89b8/screenshots/registry.png)
 
-You will use this folder to mount student list
 
-- API Port
 
-To interact with this API expose 5000 port
-
-- CMD
-
-When container start, it must run the student_age.py (copied at step 4), so it should be something like
-
-`CMD [ "python", "./student_age.py" ]`
-
-Build your image and try to run it (don't forget to mount *student_age.json* file at */data/student_age.json* in the container), check logs and verify that the container is listening and is  ready to answer
-
-Run this command to make sure that the API correctly responding (take a screenshot for delivery purpose)
-
-`curl -u toto:python -X GET http://<host IP>:<API exposed port>/pozos/api/v1.0/get_student_ages`
-
-**Congratulation! Now you are ready for the next step (docker-compose.yml)**
-
-## Infrastructure As Code (5 points)
-
-After testing your API image, you need to put all together and deploy it, using docker-compose.
-
-The ***docker-compose.yml*** file will deploy two services :
-
-- website: the end-user interface with the following characteristics
-   - image: php:apache
-   - environment: you will provide the USERNAME and PASSWORD to enable the web app to access the API through authentication
-   - volumes: to avoid php:apache image run with the default website, we will bind the website given by POZOS to use. You must have something like
-`./website:/var/www/html`
-   - depend on: you need to make sure that the API will start first before the website
-   - port: do not forget to expose the port
-- API: the image builded before should be used with the following specification
-   - image: the name of the image builded previously
-   - volumes: You will mount student_age.json file in /data/student_age.json
-   - port: don't forget to expose the port
-
-Delete your previous created container
-
-Run your docker-compose.yml
-
-Finally, reach your website and click on the bouton "List Student"
-
-**If the list of the student appears, you are successfully dockerizing the POZOS application! Congratulation (make a screenshot)**
-
-## Docker Registry (4 points)
-
-POZOS need you to deploy a private registry and store the built images
-
-So you need to deploy :
-
-- a docker [registry](https://docs.docker.com/registry/ "registry")
-- a web [interface](https://hub.docker.com/r/joxit/docker-registry-ui/ "interface") to see the pushed image as a container
-
-Or you can use [Portus](http://port.us.org/ "Portus") to run both
-
-Don't forget to push your image on your private registry and show them in your delivery.
-
-## Delivery (4 points)
-
-Your delivery must be zip named firstname.zip (replace firstname by your own) that contain:
-
-- A doc or PDF file with your screenshots and explanations.
-- Configuration files used to realize the graded exercise (docker-compose.yml and Dockerfile).
-
-Your delivery will be evaluated on:
-
-- Explanations quality
-- Screenshots quality (relevance, visibility)
-- Presentation quality
-
-Send your delivery at ***eazytrainingfr@gmail.com*** and we will provide you the link of the solution.
 
 ![good luck](https://user-images.githubusercontent.com/18481009/84582398-cad38100-adeb-11ea-95e3-2a9d4c0d5437.gif)
