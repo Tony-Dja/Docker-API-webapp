@@ -110,7 +110,7 @@ Il est exposé sur le port 80.
       - api
 
 
-<strong>Frontend, modification du fichier index.php</strong>
+<strong>Frontend, modification du fichier index.php :</strong>
 
 Afin que le Frontend puisse envoyer les requêtes à l'API, il faudra spécifier l'adresse de l'API dans la variable "$url"
 Nous pouvons utiliser le nom du conteneur Docker embarquant l'API, car en ayant créer notre propre réseau interne "student_network" dans le Docker-compose, celui-ci effectuera la résolution DNS par défaut.
@@ -118,7 +118,7 @@ Nous pouvons utiliser le nom du conteneur Docker embarquant l'API, car en ayant 
 `$url = 'http://api:5000/pozos/api/v1.0/get_student_ages`
 
 
-
+<br/><br/>
 <strong>- Lancement de l'application</strong>
 ```
 docker compose up
