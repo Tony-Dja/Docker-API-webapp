@@ -82,7 +82,7 @@ docker run -d --name container-api-service -p 5000:5000 -v /home/tonydja/formati
 curl -u toto:python -X GET http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages
 ```
 
-exemple : curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages
+exemple : `curl -u toto:python -X GET http://localhost:5000/pozos/api/v1.0/get_student_ages`
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e12bb5924d71eef708ffdec59bfae04766c943ea/screenshots/curl-api.png)
 
@@ -118,10 +118,10 @@ docker compose up
 
 
 Vérifiez que l'API est bien accessible via cette URL :<br/>
-`http://localhost:5000/pozos/api/v1.0/get_student_ages`
+http://localhost:5000/pozos/api/v1.0/get_student_ages
 
 Pour accéder à l'application (frontend) :<br/>
-`http://localhost`
+http://localhost
 
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/929ee6c621a724e0a673456cd359702c65d411f7/screenshots/frontend.png)
@@ -201,6 +201,7 @@ Ensuite nous utilisons la commande PUSH
 ```
 docker push localhost:9000/api-service:latest
 ```
+
 
 <strong>- Afficher notre Registry</strong>
 
