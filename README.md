@@ -202,11 +202,15 @@ Ensuite nous utilisons la commande PUSH
 docker push localhost:9000/api-service:latest
 ```
 
+<strong>- Afficher notre Registry privé</strong>
+
 => http://localhost:3000
 
 
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/registry-ui.png)
 
 <div align="center">
+
 ![screen](https://github.com/Tony-Dja/Docker-API-webapp/blob/e1af07224a33749102058d4d85ffa03d700a0e9b/screenshots/enjoy.jpg)
+
 </div>
